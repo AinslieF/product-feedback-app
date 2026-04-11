@@ -6,58 +6,74 @@ Base URL: `https://REPLACE-THIS-WITH-YOUR-DEPLOYED-URL.onrender.com`
 
 | Resource         | Method | Endpoint                      | Description                              |
 |------------------|--------|-------------------------------|------------------------------------------|
-| `suggestions`    | GET    | /get-all-suggestions          | Write your description here              |
-| `suggestions`    | GET    | /get-suggestions-by-category  | Write your description here              |
-| `suggestions`    | POST   | /add-one-suggestion           | Write your description here              |
+| `suggestions`    | GET    | /get-all-suggestions          | Returns all suggestions from the database              |
+| `suggestions`    | GET    | /get-suggestions-by-category  | Returns suggestions filtered by category             |
+| `suggestions`    | POST   | /add-one-suggestion           | Adds a new suggestion to the database              |
 
 ---
 
 ### 🔹 GET `/get-all-suggestions`
 
-**Description:** Write your description here
+**Description:** Returns all suggestions from the database.
 
 **Example Response:**
 
-```
-Write the data returned by this endpoint. 
-Think about its data type (String, Object, Array of Objects, etc.)
-Use spaces/indents to format the data if it is an array or object. 
+```json
+[
+  {
+    "id": 1,
+    "title": "Add dark mode",
+    "description": "It would help people who prefer dark mode.",
+    "category": "Feature"
+  },
+  {
+    "id": 2,
+    "title": "Improve loading speed",
+    "description": "The app should load faster.",
+    "category": "UX"
+  }
+]
 ```
 
 ---
 
 ### 🔹 GET `/get-suggestions-by-category/:category`
 
-**Description:** Write your description here
+**Description:** Returns suggestions filtered by a specific category.
 
 **Example Response:**
 
-```
-Write the data returned by this endpoint. 
-Think about its data type (String, Object, Array of Objects, etc.)
-Use spaces/indents to format the data if it is an array or object. 
+```json
+[
+  {
+    "id": 1,
+    "title": "Add dark mode",
+    "description": "It would help people who prefer dark mode.",
+    "category": "Feature"
+  }
+]
 ```
 
 ---
 
 ### 🔹 POST `/add-one-suggestion`
 
-**Description:** Write your description here
+**Description:** Adds a new suggestion to the database.
 
 **Example Request Body:**
 
-```
-Write the data required in the request body. 
-Think about its data type (String, Object, Array of Objects, etc.)
-Use spaces/indents to format the data if it is an array or object. 
+```json
+{
+  "title": "Add notifications",
+  "description": "Users want notifications.",
+  "category": "Enhancement"
+}
 ```
 
 **Example Response:**
 
-```
-Write the data returned by this endpoint. 
-Think about its data type (String, Object, Array of Objects, etc.)
-Use spaces/indents to format the data if it is an array or object. 
+```text
+Suggestion added successfully
 ```
 ---
 
