@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function AddFeedback() {
   const [formData, setFormData] = useState({
@@ -54,37 +55,66 @@ function AddFeedback() {
   }
 
   return (
-    <section>
-      <h1>Add Feedback</h1>
+    <section className="form-page">
+      <Link to="/" className="back-link">
+        ← Go Back
+      </Link>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="title"
-          placeholder="Feedback title"
-          value={formData.title}
-          onChange={handleInputChange}
-        />
+      <div className="form-card">
+        <h1>Create New Feedback</h1>
 
-        <textarea
-          name="description"
-          placeholder="Feedback detail"
-          value={formData.description}
-          onChange={handleInputChange}
-        />
+        <form className="feedback-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Feedback Title</label>
+            <p>Add a short, descriptive headline</p>
+            <input
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleInputChange}
+            />
+          </div>
 
-        <input
-          type="text"
-          name="category"
-          placeholder="Category"
-          value={formData.category}
-          onChange={handleInputChange}
-        />
+          <div className="form-group">
+            <label>Category</label>
+            <p>Choose a category for your feedback</p>
+            <select
+              name="category"
+              value={formData.category}
+              onChange={handleInputChange}
+            >
+              <option value="">Select category</option>
+              <option value="UI">UI</option>
+              <option value="UX">UX</option>
+              <option value="Enhancement">Enhancement</option>
+              <option value="Bug">Bug</option>
+              <option value="Feature">Feature</option>
+            </select>
+          </div>
 
-        <button type="submit">Submit</button>
-      </form>
+          <div className="form-group">
+            <label>Feedback Detail</label>
+            <p>
+              Include any specific comments on what should be improved, added,
+              etc.
+            </p>
+            <textarea
+              name="description"
+              value={formData.description}
+              onChange={handleInputChange}
+            />
+          </div>
 
-      {errorMessage && <p>{errorMessage}</p>}
+          <div className="form-buttons">
+            <Link to="/" className="cancel-btn">
+              Cancel
+            </Link>
+            <button type="submit">Add Feedback</button>
+          </div>
+        </form>
+
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+      </div>
     </section>
   );
 }

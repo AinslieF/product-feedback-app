@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [suggestions, setSuggestions] = useState([]);
@@ -37,33 +38,73 @@ function Home() {
   }
 
   return (
-    <section>
-      <h1>Product Feedback</h1>
+    <section className="home-layout">
+      <aside className="sidebar">
+        <div className="brand-box">
+          <h2>My Company</h2>
+          <p>Feedback board</p>
+        </div>
 
-      <div>
-        <button onClick={() => handleCategoryClick("All")}>All</button>
-        <button onClick={() => handleCategoryClick("UI")}>UI</button>
-        <button onClick={() => handleCategoryClick("UX")}>UX</button>
-        <button onClick={() => handleCategoryClick("Enhancement")}>
-          Enhancement
-        </button>
-        <button onClick={() => handleCategoryClick("Bug")}>Bug</button>
-        <button onClick={() => handleCategoryClick("Feature")}>Feature</button>
-      </div>
+        <div className="filter-panel">
+          <button
+            className={selectedCategory === "All" ? "active-filter" : ""}
+            onClick={() => handleCategoryClick("All")}
+          >
+            All
+          </button>
+          <button
+            className={selectedCategory === "UI" ? "active-filter" : ""}
+            onClick={() => handleCategoryClick("UI")}
+          >
+            UI
+          </button>
+          <button
+            className={selectedCategory === "UX" ? "active-filter" : ""}
+            onClick={() => handleCategoryClick("UX")}
+          >
+            UX
+          </button>
+          <button
+            className={selectedCategory === "Enhancement" ? "active-filter" : ""}
+            onClick={() => handleCategoryClick("Enhancement")}
+          >
+            Enhancement
+          </button>
+          <button
+            className={selectedCategory === "Bug" ? "active-filter" : ""}
+            onClick={() => handleCategoryClick("Bug")}
+          >
+            Bug
+          </button>
+          <button
+            className={selectedCategory === "Feature" ? "active-filter" : ""}
+            onClick={() => handleCategoryClick("Feature")}
+          >
+            Feature
+          </button>
+        </div>
+      </aside>
 
-      <p>Selected category: {selectedCategory}</p>
+      <main className="main-content">
+        <div className="top-bar">
+          <p className="suggestion-count">{suggestions.length} suggestions</p>
+          <Link className="add-feedback-link" to="/add-feedback">
+            + Add Feedback
+          </Link>
+        </div>
 
-      {suggestions.length === 0 ? (
-        <p>There is no feedback.</p>
-      ) : (
-        suggestions.map((suggestion) => (
-          <div key={suggestion.id}>
-            <h2>{suggestion.title}</h2>
-            <p>{suggestion.description}</p>
-            <p>{suggestion.category}</p>
-          </div>
-        ))
-      )}
+        {suggestions.length === 0 ? (
+          <p className="empty-message">There is no feedback.</p>
+        ) : (
+          suggestions.map((suggestion) => (
+            <div className="suggestion-card" key={suggestion.id}>
+              <h2>{suggestion.title}</h2>
+              <p>{suggestion.description}</p>
+              <p className="category-tag">{suggestion.category}</p>
+            </div>
+          ))
+        )}
+      </main>
     </section>
   );
 }
