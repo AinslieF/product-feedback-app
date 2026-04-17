@@ -1,10 +1,9 @@
 import express from "express";
 import pg from "pg";
-import config from "./config.js";
 
 // connects to the database
 const db = new pg.Pool({
-  connectionString: config.databaseUrl,
+  connectionString: process.env.DATABASE_URL,
   ssl: true,
 });
 
